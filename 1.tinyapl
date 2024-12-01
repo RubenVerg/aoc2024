@@ -1,0 +1,8 @@
+in←⎕file→Read "input/1.txt"
+
+Part1⇇{+⍆|-⍆⊴◡⍉⍎¯1‿2⍴' '<⇾⊆⍵}
+
+Part2⇇{+⍆×⇽⋷⍆⍉⍎¯1‿2⍴' '<⇾⊆⍵}
+
+⎕←"part 1: "⍪⍕Part1 in ⋄ ⎕←"part 2: "⍪⍕Part2 in
+
