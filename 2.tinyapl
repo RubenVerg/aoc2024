@@ -1,0 +1,11 @@
+in←⎕file→Read "input/2.txt"
+
+Parse⇇{⍎¨' '∘≠⊸⊆¨' '≤⇾⊆⍵}
+
+Safe⇇(⊴⊸≡)«∨»(⊵⊸≡)«∧»{∧⍆∊∘1‿2‿3|1↓¯1⊖⇾-⍵}
+
+Part1⇇{+⍆Safe¨Parse ⍵}
+
+Part2⇇{+⍆{∨⍆Safe◡⍵⌿⍨⍤∞‿1≠⊞⍨⍳≢⍵}¨Parse ⍵}
+
+⎕←"part 1: "⍪⍕Part1 in ⋄ ⎕←"part 2: "⍪⍕Part2 in
