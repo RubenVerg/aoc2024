@@ -29,7 +29,7 @@ Mul ⇇ ×⍆_Map_((Char∘')') _AfterR_ Natural _AfterL_ (Char∘',') _After_ N
 
 Part1⇇{+⍆⊃ (0⍨_Map_ AnyChar) _Or_ Mul _Many _Parse ⍵}
 
-Part2⇇{⊃0‿1{1=⎕Type ⍵⍰⟨⊃⍺⋄⍵='d'⟩⍠⟨⍺⊃⍛+⍵×⊇⍺⋄⊇⍺⟩}⍆⊃ ((0⍨_Map_ AnyChar) _Or_ ('d'⍨_Map_(String∘"do()"))_Or_('t'⍨_Map_(String∘"don't"))_Or_ Mul) _Many _Parse ⍵}
+Part2⇇{⊃0‿1{1=⎕Type ⍵⍰⟨⊃⍺⋄⍵='d'⟩⍠⟨⍺⊃⍛+⍵×⊇⍺⋄⊇⍺⟩}⍆⊃ ((0⍨_Map_ AnyChar) _Or_ ('d'⍨_Map_(String∘"do()"))_Or_('t'⍨_Map_(String∘"don't()"))_Or_ Mul) _Many _Parse ⍵}
 
 start←⎕unix
 
