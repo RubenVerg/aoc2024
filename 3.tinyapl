@@ -1,0 +1,26 @@
+parser←⦃ 
+  inp↚''
+⋄ idx↚0 
+
+  _Map_    ⇇ _{⎕Exists '⍺'⍰⍶⍶¨ ⍺ ⍹⍹ ⍵⍠⍶⍶¨ ⍹⍹ ⍵}_
+⋄ _Try     ⇇ _{ii←idx⋄r←⎕Exists'⍺'⍰⍺ ⍶⍶ ⍵⍠⍶⍶ ⍵⋄r≡⍬:idx↩ii⋄r}
+⋄ _After_  ⇇ _{dyad←⎕Exists'⍺'⋄rw←dyad⍰⍺ ⍹⍹ ⍵⍠⍹⍹ ⍵⋄rw≡⍬:■⍬⋄ra←dyad⍰⍺ ⍶⍶ ⍵⍠⍶⍶ ⍵⋄ra≡⍬:■⍬⋄⍮rw⍮⍥⊃ra}_
+⋄ _After1_ ⇇ _{dyad←⎕Exists'⍺'⋄rw←dyad⍰⍺ ⍹⍹ ⍵⍠⍹⍹ ⍵⋄rw≡⍬:■⍬⋄ra←dyad⍰⍺ ⍶⍶ ⍵⍠⍶⍶ ⍵⋄ra≡⍬:■⍬⋄⍮rw⍪∘⊃ra}_
+⋄ _AfterL_ ⇇ _⦅⊇⋄_Map_⋄⫣⋄_After_⋄⊩⦆_
+⋄ _AfterR_ ⇇ _⦅⊃⋄_Map_⋄⫣⋄_After_⋄⊩⦆_
+⋄ _Or_     ⇇ _{dyad←⎕Exists'⍺'⋄rw←dyad⍰⍺ ⍹⍹ ⍵⍠⍹⍹ ⍵⋄rw≢⍬:■rw⋄dyad⍰⍺ ⍶⍶ ⍵⍠⍶⍶ ⍵}_
+⋄ _Many    ⇇ _{dyad←⎕Exists'⍺'⋄r←dyad⍰⍺ ⍶⍶ ⍵⍠⍶⍶ ⍵⋄r≡⍬:■⍮⍬⋄dyad⍰⍺ (r∘⍪)_Map_ ∇ ⍵⍠(r∘⍪)_Map_ ∇ ⍵}
+⋄ _Some    ⇇ _{dyad←⎕Exists'⍺'⋄r←dyad⍰⍺ ⍶⍶ ⍵⍠⍶⍶ ⍵⋄r≡⍬:■⍬⋄dyad⍰⍺ (r∘⍪)_Map_ (⍶⍶ _Many) ⍵⍠(r∘⍪)_Map_ (⍶⍶ _Many) ⍵}
+
+  Char    ⇇ {idx≥≢inp:■⍬⋄⍵≠⊃idx↓inp:■⍬⋄idx↩idx+1⋄⍮⍵}
+⋄ AnyChar ⇇ {idx≥≢inp:■⍬⋄r←idx⌷inp⋄idx↩idx+1⋄⍮r}
+⋄ AnyOf   ⇇ {⍬≡⍵:■⍮⍬⋄1=≢⍵:■Char⊃⍵⋄(∇∘(1↓⍵))_Or_(Char∘⊃∘⍵)⍬}
+⋄ String  ⇇ {⍬≡⍵:■⍮⍬⋄1=≢⍵:■Char⊃⍵⋄(∇∘(1↓⍵))_After1_(Char∘⊃∘⍵)⍬}_Try
+⋄ Natural ⇇ ⍎_Map_(AnyOf∘⎕d _Some)
+
+  _Parse⇇_{idx↩0⋄inp↩⍵⋄⎕Exists'⍺'⍰⍶⍶ ⍺⍠⍶⍶ ⍬}
+⦄
+
+⦃_Map_⋄_Try⋄_After_⋄_AfterL_⋄_AfterR_⋄_Or_⋄_Many⋄_Some⋄Char⋄AnyChar⋄AnyOf⋄String⋄Natural⋄_Parse⦄⇇parser
+
+Part1⇇{+⍆⊃(0⍨_Map_ AnyChar) _Or_(×⍆_Map_((Char∘')') _AfterR_ Natural _AfterL_ (Char∘',') _After_ Natural _AfterL_ (Char∘'(') _AfterL_ (String∘"mul"))_Try) _Many _Parse ⍵}
