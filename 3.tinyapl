@@ -1,3 +1,5 @@
+in↚⎕file→Read "input/3.txt"
+
 parser←⦃ 
   inp↚''
 ⋄ idx↚0 
@@ -23,4 +25,14 @@ parser←⦃
 
 ⦃_Map_⋄_Try⋄_After_⋄_AfterL_⋄_AfterR_⋄_Or_⋄_Many⋄_Some⋄Char⋄AnyChar⋄AnyOf⋄String⋄Natural⋄_Parse⦄⇇parser
 
-Part1⇇{+⍆⊃(0⍨_Map_ AnyChar) _Or_(×⍆_Map_((Char∘')') _AfterR_ Natural _AfterL_ (Char∘',') _After_ Natural _AfterL_ (Char∘'(') _AfterL_ (String∘"mul"))_Try) _Many _Parse ⍵}
+Mul ⇇ ×⍆_Map_((Char∘')') _AfterR_ Natural _AfterL_ (Char∘',') _After_ Natural _AfterL_ (Char∘'(') _AfterL_ (String∘"mul")) _Try
+
+Part1⇇{+⍆⊃ (0⍨_Map_ AnyChar) _Or_ Mul _Many _Parse ⍵}
+
+Part2⇇{⊃0‿1{1=⎕Type ⍵⍰⟨⊃⍺⋄⍵='d'⟩⍠⟨⍺⊃⍛+⍵×⊇⍺⋄⊇⍺⟩}⍆⊃ ((0⍨_Map_ AnyChar) _Or_ ('d'⍨_Map_(String∘"do()"))_Or_('t'⍨_Map_(String∘"don't"))_Or_ Mul) _Many _Parse ⍵}
+
+start←⎕unix
+
+⎕←"part 1: "⍪⍕Part1 in ⋄ ⎕←"part 2: "⍪⍕Part2 in
+
+⎕←"took "⍪⍕⎕unix-start 
