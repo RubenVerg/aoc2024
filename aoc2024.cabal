@@ -22,5 +22,6 @@ executable aoc2024
     -- other-extensions:
     build-depends:    base ^>=4.20.0.0
                     , megaparsec ^>=9.6.1
+                    , time ^>=1.14
     hs-source-dirs:   .
     default-language: GHC2024

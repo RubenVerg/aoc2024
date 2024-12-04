@@ -5,6 +5,7 @@ import Text.Megaparsec.Char
 import Data.Void
 import Data.List
 import Data.Either
+import Data.Time.Clock.POSIX
 
 type Parser = Parsec Void String
 
@@ -47,5 +48,11 @@ part2 = fst . foldl (\cases
 run :: IO ()
 run = do
   input <- readFile "input/3.txt"
+  as <- getPOSIXTime
   print $ part1 input
+  ae <- getPOSIXTime
+  print $ ae - as
+  bs <- getPOSIXTime
   print $ part2 input
+  be <- getPOSIXTime
+  print $ be - bs
