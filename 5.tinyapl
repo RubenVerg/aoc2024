@@ -2,13 +2,13 @@ in↚⎕file→Read "input/5.txt"
 
 _Adj⇇_{1↓¯1⊖⇾⍶⍶ ⍵}
 
-_Sort⇇_{⍶⍶ _{p←⦅1⋄⊖⇾∨⋄0⋄<⍅↟⍤⍪⋄⍶⍶ _Adj⦆⍵⋄⊖⍢(p∘⌿)⍵}⍣≡⍵}
+_Sort⇇_{⍵⊇⍨⍒⍶⍶⊞⍨⍵}
 
 Parse⇇{⦅↑⍤(⍎¨)⍤('|'∘≠⊸⊆¨)⍤⊃⋄⍮⋄(⍎¨)⍤(','∘≠⊸⊆¨)⍤⊇⦆~⍤∊⍨∘'|'¨⊸⫇' '≤⇾⊆⍵}
 
 pairs‿lists↚Parse in
 
-sorted↚{⍵‿⍺∊pairs}¨_Sort¨lists
+sorted↚∊∘pairs⍤⍮¨_Sort¨lists
 
 Part1⇇{+⍆≢«-»1«÷»2⊸⊇¨⌿∘⍺ ⍺≡◡⍵}
 
