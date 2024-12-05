@@ -1,0 +1,17 @@
+in↚⎕file→Read "input/5.txt"
+
+_Adj⇇_{1↓¯1⊖⇾⍶⍶ ⍵}
+
+_Sort⇇_{⍶⍶_{p←⦅1⋄⊖⇾∨⋄0⋄<⍅↟⍤⍪⋄⍶⍶ _Adj⦆⍵⋄⊖⍢(p∘⌿)⍵}⍣≡⍵}
+
+Parse⇇{⦅↑⍤(⍎¨)⍤('|'∘≠⊸⊆¨)⍤⊃⋄⍮⋄(⍎¨)⍤(','∘≠⊸⊆¨)⍤⊇⦆~⍤∊⍨∘'|'¨⊸⫇' '≤⇾⊆⍵}
+
+pairs‿lists↚Parse in
+
+sorted↚{⍵‿⍺∊pairs}¨_Sort¨lists
+
+Part1⇇{+⍆≢«-»1«÷»2⊸⊇¨⌿∘⍺ ⍺≡◡⍵}
+
+Part2⇇{+⍆≢«-»1«÷»2⊸⊇¨⌿∘⍺ ⍺≢◡⍵}
+
+⎕←"part 1: "⍪⍕sorted Part1 lists ⋄ ⎕←"part 2: "⍪⍕sorted Part2 lists
