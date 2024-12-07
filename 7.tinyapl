@@ -1,0 +1,27 @@
+in↚⎕file→Read "input/7.txt"
+
+Parse⇇{⍎⍥1⦅⊃⋄⍮⋄' '∘≠⊸⊆⍤⊇⦆ᑒ◡':'∘≠⊸⊆¨' '≤⇾⊆⍵}
+
+Check1⇇{
+  0=≢⍵: ■0
+⋄ 1=≢⍵: ■⍺=⊃⍵
+⋄ i←⊇⍵
+⋄ is←¯1↓⍵
+⋄ 0=i|⍺⍰(is ∇⍨⍺-i)∨(is ∇⍨⍺÷i)⍠(is ∇⍨⍺-i)
+}
+
+Part1⇇{+⍆Check1∘⊃⍆◡⊸⌿⟜(⊃◡) Parse ⍵}
+
+Check2⇇{
+  0=≢⍵: ■0
+⋄ 1=≢⍵: ■⍺=⊃⍵
+⋄ i←⊇⍵
+⋄ is←¯1↓⍵
+⋄ strI←⍕i
+⋄ mul←0=i|⍺ ⋄ cat←strI≡(-≢strI)↑⍕⍺
+⋄ mul∧cat⍰(is ∇⍨⍺-i)∨(is ∇⍨⍺÷i)∨(is ∇⍨⌊⍺÷10*≢strI)⍠(mul⍰(is ∇⍨⍺-i)∨(is ∇⍨⍺÷i)⍠(cat⍰(is ∇⍨⍺-i)∨(is ∇⍨⌊⍺÷10*≢strI)⍠(is ∇⍨⍺-i)))
+}
+
+Part2⇇{+⍆Check2∘⊃⍆◡⊸⌿⟜(⊃◡) Parse ⍵}
+
+⎕←"part 1: "⍪⍕Part1 in ⋄ ⎕←"part 2: "⍪⍕Part2 in
