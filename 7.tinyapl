@@ -1,3 +1,5 @@
+⍝ -- this code requires TinyAPL >= 0.12 --
+
 in↚⎕file→Read "input/7.txt"
 
 Parse⇇{⍎⍥1⦅⊃⋄⍮⋄' '∘≠⊸⊆⍤⊇⦆ᑒ◡':'∘≠⊸⊆¨' '≤⇾⊆⍵}
