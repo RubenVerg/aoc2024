@@ -19,7 +19,9 @@ Check2⇇{
 ⋄ is←¯1↓⍵
 ⋄ strI←⍕i
 ⋄ mul←0=i|⍺ ⋄ cat←strI≡(-≢strI)↑⍕⍺
-⋄ mul∧cat⍰(is ∇⍨⍺-i)∨(is ∇⍨⍺÷i)∨(is ∇⍨⌊⍺÷10*≢strI)⍠(mul⍰(is ∇⍨⍺-i)∨(is ∇⍨⍺÷i)⍠(cat⍰(is ∇⍨⍺-i)∨(is ∇⍨⌊⍺÷10*≢strI)⍠(is ∇⍨⍺-i)))
+⋄ mul∧cat⍰(is ∇⍨⍺-i)∨(is ∇⍨⍺÷i)∨(is ∇⍨⌊⍺÷10*≢strI)⍠
+      mul⍰(is ∇⍨⍺-i)∨(is ∇⍨⍺÷i)⍠
+      cat⍰(is ∇⍨⍺-i)∨(is ∇⍨⌊⍺÷10*≢strI)⍠(is ∇⍨⍺-i)
 }
 
 Part2⇇{+⍆Check2∘⊃⍆◡⊸⌿⟜(⊃◡) Parse ⍵}
