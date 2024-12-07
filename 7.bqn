@@ -21,16 +21,17 @@ Check2←{
 	i←⊑ints
 	is←1↓ints
 	check_prod←0=i|target
-	str_i←•Fmt i
-	check_catenation←str_i≡(-≠str_i)↑•Fmt target
+	log_i←1+⌊10⋆⁼i
+	pow_i←10⋆log_i
+	check_catenation←i=pow_i|target
 	{
-		check_prod∧check_catenation?(is Check2˜target-i)∨(is Check2˜target÷i)∨(is Check2˜⌊target÷10⋆≠str_i);
+		check_prod∧check_catenation?(is Check2˜target-i)∨(is Check2˜target÷i)∨(is Check2˜⌊target÷pow_i);
 		check_prod?(is Check2˜target-i)∨(is Check2˜target÷i);
-		check_catenation?(is Check2˜target-i)∨(is Check2˜⌊target÷10⋆≠str_i);
+		check_catenation?(is Check2˜target-i)∨(is Check2˜⌊target÷pow_i);
 		is Check2˜target-i
 	}
 }
 Part2←+´·⊑˘·Check2´˘⊸/Parse
 
-•Show Part1 in
-•Show Part2 in
+•Show (Part1⋈Part1•_timed) in
+•Show (Part2⋈Part2•_timed) in
