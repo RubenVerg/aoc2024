@@ -41,7 +41,7 @@ def region(g: list[str], x: int, y: int) -> tuple[int, int, set[tuple[int, int]]
 def sides(points: set[tuple[int, int]]) -> int:
 	fences: set[tuple[int, int, int, int]] = set()
 	sides = 0
-	for (x, y) in sorted(points, key=lambda p: (p[1], p[0])):
+	for (x, y) in sorted(points):
 		for (dx, dy) in [(-1, 0), (0, -1), (1, 0), (0, 1)]:
 			if (x + dx, y + dy) not in points:
 				if (x - (dx == 0), y - (dy == 0), dx, dy) not in fences:
